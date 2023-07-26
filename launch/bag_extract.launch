@@ -1,4 +1,4 @@
 <launch>
-	<param name="save_flag" type="bool" value="false" />
+    <param name="save_flag" type="bool" value="false" />
     <node name="to_png" pkg="bag_extract" type="to_png.py" output="screen"/>
 </launch>
