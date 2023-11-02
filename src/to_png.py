@@ -22,7 +22,7 @@ class BagExtractor:
         self.out_folder = '/home/enan/TestDemetriImages'   
         os.makedirs(self.out_folder, exist_ok=True)          
         self.save_flag = False
-        # self.rate = rospy.Rate(10)
+        self.rate = rospy.Rate(50)
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber('/stereo/right/image_raw', Image, self.imageCallBack, queue_size=3) # /stereo/right/image_raw;; /camera_front_right/image_raw
 
@@ -62,12 +62,12 @@ class BagExtractor:
             rospy.signal_shutdown("Q is pressed.")
 
 
-        cv2.imshow('Output', self.img_raw)        
+        # cv2.imshow('Output', self.img_raw)        
         if self.save_flag:
             print("saving.")
             cv2.imwrite(os.path.join(self.out_folder, 'img_{:03d}.png'.format(self.img_counter) ) , self.img_raw)
         
-        
+        self.rate.sleep()
 
     
 BagExtractor()
