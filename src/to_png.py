@@ -22,7 +22,10 @@ class BagExtractor:
         self.img_counter_right = 0
         self.img_counter = 0
         self.out_folder = '/home/enan0001/zedbag_2023-04-25-15-54-29_1'  
-        os.makedirs(self.out_folder, exist_ok=True)          
+        self.out_folder_left = os.path.join(self.out_folder, 'left')
+        self.out_folder_right = os.path.join(self.out_folder, 'right')
+        os.makedirs(self.out_folder_left, exist_ok=True)     
+        os.makedirs(self.out_folder_right, exist_ok=True)     
         self.save_flag = False
         self.rate = rospy.Rate(3) # ~number of frames saved per second
         self.bridge = CvBridge()
@@ -92,8 +95,8 @@ class BagExtractor:
         if self.save_flag:
             self.img_counter += 1
             # print("saving...")
-            cv2.imwrite(os.path.join(self.out_folder, 'img_{:03d}_left.png'.format(self.img_counter) ) , self.img_raw_left)
-            cv2.imwrite(os.path.join(self.out_folder, 'img_{:03d}_right.png'.format(self.img_counter) ) , self.img_raw_right)
+            cv2.imwrite(os.path.join(self.out_folder_left, 'img_{:03d}_left.png'.format(self.img_counter) ) , self.img_raw_left)
+            cv2.imwrite(os.path.join(self.out_folder_right, 'img_{:03d}_right.png'.format(self.img_counter) ) , self.img_raw_right)
 
         self.rate.sleep()
 
