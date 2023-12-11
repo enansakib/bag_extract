@@ -21,7 +21,7 @@ class BagExtractor:
         self.img_counter_left = 0
         self.img_counter_right = 0
         self.img_counter = 0
-        self.out_folder = '/home/enan0001/zedbag_2023-04-25-16-14-29_3'  
+        self.out_folder = '/home/enan0001/diverID_frame_test'  
         self.out_folder_left = self.out_folder+'_left'
         self.out_folder_right = self.out_folder+'_right'
         os.makedirs(self.out_folder_left, exist_ok=True)     
@@ -29,8 +29,11 @@ class BagExtractor:
         self.save_flag = False
         self.rate = rospy.Rate(3) # ~number of frames saved per second
         self.bridge = CvBridge()
-        self.image_sub_left = message_filters.Subscriber('/zedm/zed_node/left_raw/image_raw_color', Image)
-        self.image_sub_right = message_filters.Subscriber('/zedm/zed_node/right_raw/image_raw_color', Image)
+        # self.image_sub_left = message_filters.Subscriber('/zedm/zed_node/left_raw/image_raw_color', Image)
+        # self.image_sub_right = message_filters.Subscriber('/zedm/zed_node/right_raw/image_raw_color', Image)
+        self.image_sub_left = message_filters.Subscriber('/loco_cams/left/image_raw', Image)
+        self.image_sub_right = message_filters.Subscriber('/loco_cams/right/image_raw', Image)
+        
         self.time_sync = message_filters.ApproximateTimeSynchronizer([self.image_sub_left, self.image_sub_right], queue_size=10, allow_headerless=True, slop=0.001)
         self.time_sync.registerCallback(self.imageCallback)
 
