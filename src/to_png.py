@@ -21,9 +21,9 @@ class BagExtractor:
         self.img_counter_left = 0
         self.img_counter_right = 0
         self.img_counter = 0
-        self.out_folder = '/home/enan0001/zedbag_2023-04-25-15-54-29_1'  
-        self.out_folder_left = os.path.join(self.out_folder, 'left')
-        self.out_folder_right = os.path.join(self.out_folder, 'right')
+        self.out_folder = '/home/enan0001/zedbag_2023-04-25-16-14-29_3'  
+        self.out_folder_left = self.out_folder+'_left'
+        self.out_folder_right = self.out_folder+'_right'
         os.makedirs(self.out_folder_left, exist_ok=True)     
         os.makedirs(self.out_folder_right, exist_ok=True)     
         self.save_flag = False
